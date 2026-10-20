@@ -838,7 +838,8 @@ function renderHome(){
   if(last){
     var c=courseOf(last), pg=ST.prog[last];
     r.innerHTML='<span><span class="r-t">つづきから</span><br><span class="r-s"></span></span><span class="r-go">はじめる ▶</span>';
-    r.querySelector('.r-s').textContent=c.name+'　'+(pg.i+1)+' もんめ / '+pg.qs.length;
+    var rs=r.querySelector('.r-s'); rs.textContent=c.name+' ';
+    var rn=el('span',null,(pg.i+1)+'もんめ / '+pg.qs.length); rn.style.whiteSpace='nowrap'; rs.appendChild(rn);
     r.hidden=false;
     r.onclick=function(){ openCourse(last); };
   }else{ r.hidden=true; r.onclick=null; }
