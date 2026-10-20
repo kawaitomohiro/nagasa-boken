@@ -1,0 +1,18 @@
+{
+  "name": "長さの冒険",
+  "short_name": "長さの冒険",
+  "description": "3年算数「長い長さ」mm・cm・m・km の練習。URLを開くだけ・記録はこの端末だけ。",
+  "lang": "ja",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#e3f4dc",
+  "theme_color": "#2e8b57",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
