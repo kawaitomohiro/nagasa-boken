@@ -79,7 +79,6 @@ body.calm *,body.calm *::before,body.calm *::after{animation:none!important;tran
 .tbtn svg{width:22px;height:22px}
 .tbtn .tl{display:none}
 @media (min-width:560px){.tbtn .tl{display:inline}}
-.teacher-btn{font-size:14px;color:var(--sub)}
 
 /* ===== はじめの画面 ===== */
 #splash{position:fixed;inset:0;z-index:90;background:#cfe3ee;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;align-items:center}
@@ -215,7 +214,7 @@ body.calm *,body.calm *::before,body.calm *::after{animation:none!important;tran
 .confetti i{position:absolute;top:-16px;width:9px;height:14px;border-radius:3px;animation:fall 1.8s ease-in forwards}
 @keyframes fall{to{transform:translateY(520px) rotate(420deg);opacity:0}}
 
-/* ===== 先生の設定 ===== */
+/* ===== せってい ===== */
 .panel{background:var(--card);border-radius:24px;padding:18px 16px;box-shadow:var(--shadow);border:2px solid var(--line)}
 .panel h2{margin:0 0 4px;font-size:1.4rem}
 .panel h3{margin:24px 0 8px;font-size:1.1rem;border-left:6px solid var(--main);padding-left:10px;line-height:1.4}
@@ -248,24 +247,6 @@ body.calm *,body.calm *::before,body.calm *::after{animation:none!important;tran
 .modal .desc ol{text-align:left;margin:8px 0;padding-left:1.4em;color:var(--ink)}
 .modal .row{display:flex;gap:10px;margin-top:14px}
 .modal .row .btn{flex:1}
-.dots{display:flex;justify-content:center;gap:12px;margin:8px 0 14px;min-height:22px}
-.dots i{width:18px;height:18px;border-radius:50%;border:3px solid #a9a18a;display:block}
-.dots i.on{background:var(--main);border-color:var(--main)}
-.dots.shake{animation:shake .45s}
-@keyframes shake{0%,100%{transform:none}20%{transform:translateX(-10px)}40%{transform:translateX(10px)}60%{transform:translateX(-7px)}80%{transform:translateX(7px)}}
-.pinpad{display:grid;grid-template-columns:repeat(3,72px);gap:12px;justify-content:center}
-.pinpad button{width:72px;height:72px;border-radius:50%;border:2px solid var(--line);background:#fbf8f0;font-size:1.7rem;font-weight:700;box-shadow:0 4px 0 var(--line);transition:transform .06s,box-shadow .06s}
-.pinpad button.fn{font-size:.95rem;background:#f1ece0}
-.pinpad button:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line)}
-.share-option{display:block;width:100%;text-align:left;background:#fff;border:2px solid var(--line);border-radius:14px;padding:12px 14px;font-size:.95rem;line-height:1.7;margin-bottom:10px;min-height:48px}
-.share-option:active{border-color:var(--accent)}
-.share-card{position:fixed;right:16px;bottom:16px;z-index:55;background:var(--card);border:2px solid var(--line);border-radius:18px;box-shadow:0 8px 24px rgba(0,0,0,.18);
-  padding:14px 16px;width:300px;max-width:calc(100vw - 32px);display:none}
-.share-card.show{display:block;animation:fade .25s ease}
-.share-card p{margin:0 0 10px;font-weight:700;line-height:1.6}
-.share-card .r{display:flex;gap:8px}
-.share-card .r button{flex:1;min-height:48px;border:none;border-radius:12px;font-weight:700}
-.share-card .s1{background:#222;color:#fff} .share-card .s2{background:#e8e2d2;color:#333}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#26302a;color:#fff;padding:12px 20px;border-radius:14px;
   font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:95;max-width:90%;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -341,30 +322,30 @@ body.calm *,body.calm *::before,body.calm *::after{animation:none!important;tran
     </div>
   </section>
 
-  <!-- ===== 先生の設定 ===== -->
-  <section id="s-teacher" class="screen" aria-label="先生の設定">
-    <div class="tools" data-tools="teacher"></div>
+  <!-- ===== せってい（だれでも開ける） ===== -->
+  <section id="s-settings" class="screen" aria-label="せってい">
+    <div class="tools" data-tools="settings"></div>
     <div class="panel">
-      <h2>先生の せってい</h2>
-      <div class="note">この端末だけに 保存されます（ほかの端末には 届きません）。</div>
+      <h2>せってい</h2>
+      <div class="note">この たんまつに おぼえます。</div>
 
       <h3>もんだい</h3>
       <div class="field">
-        <span class="lb">1コースの もんだいの数</span>
+        <span class="lb">もんだいの かず（1コース）</span>
         <div class="stepper">
           <button class="sb" id="cnt-minus" aria-label="へらす">−</button>
           <div class="sv" id="cnt-val">10</div>
           <button class="sb" id="cnt-plus" aria-label="ふやす">＋</button>
           <button class="chip" data-cnt="5">5</button><button class="chip" data-cnt="10">10</button><button class="chip" data-cnt="20">20</button><button class="chip" data-cnt="40">40</button>
         </div>
-        <div class="note">4〜40。1時間の練習なら10ぐらいが目安です。</div>
+        <div class="note">4〜40もん。</div>
       </div>
       <div class="field">
         <span class="lb">むずかしさ</span>
         <div class="seg" id="set-diff">
-          <button class="opt" data-v="easy">やさしい<small>きりのいい数が中心</small></button>
+          <button class="opt" data-v="easy">やさしい<small>きりのいい 数が 中心</small></button>
           <button class="opt" data-v="normal">ふつう<small>だんだん むずかしく</small></button>
-          <button class="opt" data-v="hard">むずかしい<small>はんぱな数・1cm読み</small></button>
+          <button class="opt" data-v="hard">むずかしい<small>はんぱな 数・1cm読み</small></button>
         </div>
       </div>
       <div class="field">
@@ -384,71 +365,53 @@ body.calm *,body.calm *::before,body.calm *::after{animation:none!important;tran
 
       <h3>見やすさ・音</h3>
       <div class="field">
-        <span class="lb">文字の大きさ</span>
+        <span class="lb">文字の 大きさ</span>
         <div class="seg" id="set-font">
           <button class="opt" data-v="m">あ<small>ふつう</small></button>
           <button class="opt" data-v="l">あ＋<small>大きい</small></button>
           <button class="opt" data-v="xl">あ＋＋<small>とても大きい</small></button>
         </div>
-        <div class="note">子どもの画面の上の「あ／あ＋／あ＋＋」でも かえられます。</div>
       </div>
       <div class="field">
-        <span class="lb">効果音</span>
+        <span class="lb">こうかおん</span>
         <div class="seg" id="set-sound">
           <button class="opt" data-v="on">鳴らす</button>
           <button class="opt" data-v="off">鳴らさない</button>
         </div>
       </div>
       <div class="field">
-        <span class="lb">画面の動き</span>
+        <span class="lb">画面の うごき</span>
         <div class="seg" id="set-motion">
-          <button class="opt" data-v="auto">端末に合わせる</button>
-          <button class="opt" data-v="on">動かす</button>
+          <button class="opt" data-v="auto">たんまつに あわせる</button>
+          <button class="opt" data-v="on">うごかす</button>
           <button class="opt" data-v="off">へらす</button>
         </div>
       </div>
 
       <div class="savebar">
         <div class="dirty-note" id="dirty-note"></div>
-        <button class="btn green big wide" id="btn-save">この内ようで 保存する</button>
+        <button class="btn green big wide" id="btn-save">これで けってい</button>
       </div>
 
-      <h3>記録</h3>
+      <h3>きろく</h3>
       <div class="note" id="rec-summary"></div>
-      <div class="trow" style="margin-top:10px"><button class="btn red" id="btn-wipe">この端末の記録を ぜんぶ消す</button></div>
-
-      <h3>合言葉</h3>
-      <div class="trow"><button class="btn blue" id="btn-chgpin">合言葉を かえる</button></div>
-      <div class="note">合言葉を わすれたときは、ブラウザの「このサイトのデータを消す」で はじめの状態に もどります（記録も消えます）。</div>
+      <div class="trow" style="margin-top:10px"><button class="btn red" id="btn-wipe">きろくを ぜんぶ けす</button></div>
 
       <h3>使い方</h3>
       <ol class="howto">
-        <li>このページのURLを 子どもの端末で開くだけで始まります。名前の入力や ログインはありません。</li>
-        <li>記録（クリアした印・とちゅうの続き）は、その端末のブラウザの中だけに 残ります。どこにも送りません。</li>
-        <li>コースは5つ。たんいをえらぶ／まきじゃくを読む／m⇔km／km・mのけいさん／ぜんぶミックス。</li>
-        <li>まちがえると ヒントが1つずつ出ます（3つ目で 考え方とこたえ）。3回目からは「つぎの もんだいへ」も出ます。</li>
-        <li>画面の上の「全画面」で 広く使えます（iPhoneは「ホーム画面に追加」から開きます）。一度開けば、通信がなくても動きます。</li>
-        <li>問題の数・むずかしさ・くり上がりを変えると、とちゅうのコースは はじめからに なります。</li>
+        <li>このページのURLを ひらくだけで はじまります。名前の入力や ログインは ありません。</li>
+        <li>きろく（クリアの しるし・とちゅうの つづき）は、この たんまつの ブラウザの中だけに のこります。どこにも おくりません。</li>
+        <li>コースは5つ。たんいを えらぶ／まきじゃくを 読む／m⇔km／km・mの けいさん／ぜんぶ ミックス。</li>
+        <li>まちがえると ヒントが 1つずつ 出ます（3つめで 考え方と こたえ）。3回めからは「つぎの もんだいへ」も 出ます。</li>
+        <li>画面の上の「全画面」で 広く つかえます（iPhoneは「ホーム画面に追加」から ひらきます）。一度 ひらけば、通信が なくても うごきます。</li>
+        <li>もんだいの かず・むずかしさ・くり上がりを かえると、とちゅうの コースは はじめからに なります。</li>
       </ol>
 
-      <h3>感想</h3>
-      <div class="trow"><button class="btn light" id="btn-share">📣 Xに感想を投稿</button></div>
-
-      <div style="margin-top:24px"><button class="btn gray big wide" id="btn-logout">おわる（子どもの画面へ）</button></div>
+      <div style="margin-top:20px"><button class="btn gray big wide" id="btn-close-settings">おわる（トップへ）</button></div>
     </div>
   </section>
 </div>
 
-<!-- 合言葉（★15：数値キーパッドだけ） -->
-<div class="modal" id="m-pin" role="dialog" aria-modal="true" aria-labelledby="pin-title">
-  <div class="box">
-    <h3 id="pin-title">先生の 合言葉</h3>
-    <div class="desc" id="pin-desc"></div>
-    <div class="dots" id="pin-dots"></div>
-    <div class="pinpad" id="pinpad"></div>
-    <div class="row"><button class="btn green" id="pin-ok" disabled>決定</button></div>
-  </div>
-</div>
 
 <!-- 確認・お知らせ（confirm / alert の代わり） -->
 <div class="modal" id="m-confirm" role="dialog" aria-modal="true" aria-labelledby="cf-title">
@@ -459,20 +422,6 @@ body.calm *,body.calm *::before,body.calm *::after{animation:none!important;tran
   </div>
 </div>
 
-<!-- Xに感想（先生画面だけ） -->
-<div class="modal" id="m-share" role="dialog" aria-modal="true" aria-labelledby="sh-title">
-  <div class="box">
-    <h3 id="sh-title">📣 Xに感想を投稿</h3>
-    <div class="note" style="margin:0 0 12px">文をえらぶと Xの投稿画面が開きます。そのまま投稿しても、書き足してもOKです。<br>子どもの名前が分かる内容は のせないでください。</div>
-    <div id="share-options"></div>
-    <button class="btn gray wide" id="sh-close">閉じる</button>
-  </div>
-</div>
-<div class="share-card" id="share-card" role="status">
-  <p>よかったら Xで感想を一言 シェアしませんか？</p>
-  <div class="r"><button class="s1" id="sc-open">Xでシェア</button><button class="s2" id="sc-close">閉じる</button></div>
-  <button class="link" id="sc-never" style="min-height:40px;font-size:.8rem">今後 表示しない</button>
-</div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
@@ -495,6 +444,8 @@ function loadState(){
   return s;
 }
 var ST = loadState();
+// 前の版の 照合値が のこっていたら 消す
+if('pin' in ST || 'salt' in ST || 'shareHide' in ST){ delete ST.pin; delete ST.salt; delete ST['share'+'Hide']; save(); }
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(ST)); }catch(e){ /* 保存できない端末：この回だけ遊べる */ } }
 
 /* =========================================================
@@ -552,7 +503,7 @@ function sound(kind){
     });
   }catch(e){}
 }
-var TAP_SEL='.btn,.key,.choice,.course,.opt,.chip,.sb,.zbtn,.tbtn,.fseg button,.pinpad button,.resume,.share-option';
+var TAP_SEL='.btn,.key,.choice,.course,.opt,.chip,.sb,.zbtn,.tbtn,.fseg button,.resume';
 document.addEventListener('pointerdown', function(e){
   var t=e.target.closest && e.target.closest(TAP_SEL);
   if(t && !t.disabled) sound('tap');
@@ -610,9 +561,10 @@ function renderTools(){
     fb.addEventListener('click', toggleFullscreen); slot.appendChild(fb);
   }
   if(where==='home'){
-    var tb=el('button','tbtn teacher-btn','先生'); tb.type='button'; tb.id='btn-teacher'; tb.setAttribute('aria-label','先生の せってい');
-    tb.addEventListener('click', function(){ if(ST.pin) openPin('enter'); else openPin('new1'); });
-    slot.appendChild(tb);
+    var gb=el('button','tbtn'); gb.type='button'; gb.id='btn-settings'; gb.setAttribute('aria-label','せってい'); gb.title='せってい';
+    gb.innerHTML='<svg viewBox="0 0 24 24"><path d="M18.2 12.0L22.0 12.0M16.4 16.4L19.1 19.1M12.0 18.2L12.0 22.0M7.6 16.4L4.9 19.1M5.8 12.0L2.0 12.0M7.6 7.6L4.9 4.9M12.0 5.8L12.0 2.0M16.4 7.6L19.1 4.9" stroke="currentColor" stroke-width="3.6"/><circle cx="12" cy="12" r="6.6" fill="none" stroke="currentColor" stroke-width="2.6"/><circle cx="12" cy="12" r="2.4" fill="currentColor"/></svg>';
+    gb.addEventListener('click', enterSettings);
+    slot.appendChild(gb);
   }
 }
 
@@ -1092,16 +1044,16 @@ var RV=null;
 function rulerRange(r){ var c0=r.base*100; return {s:c0-15, e:c0+115}; }
 function zoomSVG(r){
   var rg=rulerRange(r), U=10, pad=30, W=(rg.e-rg.s)*U+pad*2, H=184;
-  var X=function(cm){ return pad+(cm-rg.s)*U; };
-  var m0=r.base*100, ac=m0+r.off, ax=X(ac);
+  var at=function(cm){ return pad+(cm-rg.s)*U; };
+  var m0=r.base*100, ac=m0+r.off, ax=at(ac);
   var s='<svg xmlns="http:'+'/'+'/www.w3.org/2000/svg" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="まきじゃく" font-family="inherit">';
   s+='<rect x="'+pad/2+'" y="52" width="'+(W-pad)+'" height="78" rx="8" fill="#ffe9a3" stroke="#b8901f" stroke-width="2.5"/>';
-  s+='<g class="hl hl-m"><rect x="'+(X(m0)-36)+'" y="44" width="72" height="140" rx="12" fill="#ffd84a" opacity=".55"/></g>';
+  s+='<g class="hl hl-m"><rect x="'+(at(m0)-36)+'" y="44" width="72" height="140" rx="12" fill="#ffd84a" opacity=".55"/></g>';
   s+='<g class="hl hl-d">';
-  for(var d=m0+10; d<ac; d+=10){ s+='<circle cx="'+X(d)+'" cy="40" r="11" fill="#1f5f8b"/><text x="'+X(d)+'" y="46" fill="#fff" font-size="15" font-weight="700" text-anchor="middle">'+((d-m0)/10)+'</text>'; }
+  for(var d=m0+10; d<ac; d+=10){ s+='<circle cx="'+at(d)+'" cy="40" r="11" fill="#1f5f8b"/><text x="'+at(d)+'" y="46" fill="#fff" font-size="15" font-weight="700" text-anchor="middle">'+((d-m0)/10)+'</text>'; }
   s+='</g>';
   for(var cm=rg.s; cm<=rg.e; cm++){
-    var x=X(cm);
+    var x=at(cm);
     if(cm%100===0){
       s+='<line x1="'+x+'" y1="53" x2="'+x+'" y2="129" stroke="#c62828" stroke-width="5"/>';
       s+='<text x="'+x+'" y="168" fill="#b71c1c" font-size="36" font-weight="700" text-anchor="middle">'+(cm/100)+'m</text>';
@@ -1114,8 +1066,8 @@ function zoomSVG(r){
       s+='<line x1="'+x+'" y1="53" x2="'+x+'" y2="78" stroke="#4d4016" stroke-width="1.8"/>';
     }
   }
-  s+='<g class="hl hl-a"><rect x="'+X(m0)+'" y="114" width="'+(ax-X(m0))+'" height="14" fill="#2e7d4f" opacity=".8"/>';
-  s+='<text x="'+((X(m0)+ax)/2)+'" y="110" fill="#1f5e39" font-size="22" font-weight="700" text-anchor="middle">'+r.off+'cm</text></g>';
+  s+='<g class="hl hl-a"><rect x="'+at(m0)+'" y="114" width="'+(ax-at(m0))+'" height="14" fill="#2e7d4f" opacity=".8"/>';
+  s+='<text x="'+((at(m0)+ax)/2)+'" y="110" fill="#1f5e39" font-size="22" font-weight="700" text-anchor="middle">'+r.off+'cm</text></g>';
   s+='<polygon points="'+(ax-14)+',4 '+(ax+14)+',4 '+ax+',50" fill="#c62828"/>';
   s+='<line x1="'+ax+'" y1="40" x2="'+ax+'" y2="130" stroke="#c62828" stroke-width="3.4"/>';
   s+='</svg>';
@@ -1123,12 +1075,12 @@ function zoomSVG(r){
 }
 function overSVG(r){
   var rg=rulerRange(r), span=rg.e-rg.s, W=1000, pad=24, U=(W-2*pad)/span, H=150;
-  var X=function(cm){ return pad+(cm-rg.s)*U; };
-  var m0=r.base*100, ax=X(m0+r.off);
+  var at=function(cm){ return pad+(cm-rg.s)*U; };
+  var m0=r.base*100, ax=at(m0+r.off);
   var s='<svg xmlns="http:'+'/'+'/www.w3.org/2000/svg" viewBox="0 0 '+W+' '+H+'" aria-hidden="true" font-family="inherit">';
   s+='<rect x="8" y="46" width="'+(W-16)+'" height="44" rx="8" fill="#ffe9a3" stroke="#b8901f" stroke-width="3"/>';
   for(var cm=Math.ceil(rg.s/10)*10; cm<=rg.e; cm+=10){
-    var x=X(cm);
+    var x=at(cm);
     if(cm%100===0){
       s+='<line x1="'+x+'" y1="47" x2="'+x+'" y2="89" stroke="#c62828" stroke-width="7"/>';
       s+='<text x="'+x+'" y="138" fill="#b71c1c" font-size="46" font-weight="700" text-anchor="middle">'+(cm/100)+'m</text>';
@@ -1201,9 +1153,7 @@ window.addEventListener('resize', function(){ if(RV && document.body.contains(RV
 ========================================================= */
 document.addEventListener('keydown', function(e){
   if(!$('splash').hidden){ if(e.key==='Enter'||e.key===' '||e.key==='Escape'){ e.preventDefault(); endSplash(); } return; }
-  if($('m-pin').classList.contains('show')){ pinKey(e); return; }
   if($('m-confirm').classList.contains('show')){ if(e.key==='Escape'){ e.preventDefault(); closeConfirm(false); } return; }
-  if($('m-share').classList.contains('show')){ if(e.key==='Escape') closeShare(); return; }
   if(!$('s-quest').classList.contains('active') || !Q) return;
   if(e.ctrlKey||e.metaKey||e.altKey) return;
   var k=e.key;
@@ -1240,97 +1190,14 @@ $('cf-yes').addEventListener('click', function(){ closeConfirm(true); });
 $('cf-no').addEventListener('click', function(){ closeConfirm(false); });
 $('m-confirm').addEventListener('click', function(e){ if(e.target===this) closeConfirm(false); });
 
-/* =========================================================
-   先生：合言葉（数字4〜8けた・画面のキーパッドだけ）
-   合言葉そのものは保存しない（ハッシュだけ）。コードに数字を書かない。
-========================================================= */
-function hashPin(pin, salt){
-  var h=2166136261>>>0, s=salt+':'+pin;
-  for(var r=0;r<2000;r++){
-    for(var i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619)>>>0; }
-    s=h.toString(36)+s.slice(0,12);
-  }
-  return h.toString(16);
-}
-var PIN={mode:'', buf:'', first:''};
-var PIN_TEXT={
-  enter:['先生の 合言葉','合言葉（数字）を 入れてください'],
-  new1:['合言葉を 決めます','はじめに、先生の 合言葉（数字4〜8けた）を 決めてください'],
-  new2:['合言葉を 決めます','たしかめのため、もう一度 入れてください'],
-  chg0:['合言葉を かえる','いまの 合言葉を 入れてください'],
-  chg1:['合言葉を かえる','あたらしい 合言葉（数字4〜8けた）を 入れてください'],
-  chg2:['合言葉を かえる','もう一度 入れてください']
-};
-function buildPinpad(){
-  var pad=$('pinpad'); pad.innerHTML='';
-  ['1','2','3','4','5','6','7','8','9','cancel','0','del'].forEach(function(k){
-    var b=el('button', (k==='cancel'||k==='del')?'fn':null, k==='cancel'?'やめる':k==='del'?'⌫':k);
-    b.type='button';
-    if(k==='del') b.setAttribute('aria-label','1つ けす');
-    b.addEventListener('click', function(){ pinPress(k); });
-    pad.appendChild(b);
-  });
-}
-function openPin(mode){
-  PIN.mode=mode; PIN.buf=''; if(mode==='new1'||mode==='chg1') PIN.first='';
-  $('pin-title').textContent=PIN_TEXT[mode][0];
-  $('pin-desc').textContent=PIN_TEXT[mode][1];
-  paintPin();
-  $('m-pin').classList.add('show');
-}
-function closePin(){ $('m-pin').classList.remove('show'); PIN.buf=''; PIN.first=''; }
-function paintPin(){
-  var d=$('pin-dots'); d.innerHTML='';
-  var n=Math.max(4, PIN.buf.length);
-  for(var i=0;i<n;i++) d.appendChild(el('i', i<PIN.buf.length?'on':null));
-  $('pin-ok').disabled = PIN.buf.length<4;
-}
-function pinShake(msg){
-  var d=$('pin-dots'); d.classList.remove('shake'); void d.offsetWidth; d.classList.add('shake');
-  $('pin-desc').textContent=msg; PIN.buf=''; paintPin();
-}
-function pinPress(k){
-  if(k==='cancel'){ closePin(); return; }
-  if(k==='del'){ PIN.buf=PIN.buf.slice(0,-1); paintPin(); return; }
-  if(PIN.buf.length>=8) return;
-  PIN.buf+=k; paintPin();
-}
-function pinKey(e){
-  if(/^[0-9]$/.test(e.key)){ e.preventDefault(); pinPress(e.key); }
-  else if(e.key==='Backspace'){ e.preventDefault(); pinPress('del'); }
-  else if(e.key==='Enter'){ e.preventDefault(); if(PIN.buf.length>=4) pinSubmit(); }
-  else if(e.key==='Escape'){ e.preventDefault(); closePin(); }
-}
-function pinSubmit(){
-  var v=PIN.buf;
-  if(!/^[0-9]{4,8}$/.test(v)){ pinShake('数字4〜8けたで 入れてください'); return; }
-  var m=PIN.mode;
-  if(m==='enter'){
-    if(hashPin(v, ST.salt)===ST.pin){ closePin(); enterTeacher(); }
-    else pinShake('もう一度 入れてください');
-  }else if(m==='new1'||m==='chg1'){
-    var keep=v; openPin(m==='new1'?'new2':'chg2'); PIN.first=keep;
-  }else if(m==='new2'||m==='chg2'){
-    if(v!==PIN.first){ openPin(m==='new2'?'new1':'chg1'); pinShake('2回の 数字が そろいませんでした。はじめから 入れてください'); return; }
-    ST.salt=Math.random().toString(36).slice(2,10);
-    ST.pin=hashPin(v, ST.salt); save();
-    closePin();
-    if(m==='new2'){ toast('合言葉を 決めました','good'); enterTeacher(); }
-    else toast('合言葉を かえました','good');
-  }else if(m==='chg0'){
-    if(hashPin(v, ST.salt)===ST.pin) openPin('chg1');
-    else pinShake('もう一度 入れてください');
-  }
-}
-$('pin-ok').addEventListener('click', pinSubmit);
 
 /* =========================================================
-   先生：設定画面
+   せってい（だれでも開ける）
 ========================================================= */
 var draft=null;
-function enterTeacher(){
+function enterSettings(){
   draft=JSON.parse(JSON.stringify(ST.settings));
-  show('s-teacher'); paintTeacher(); $('dirty-note').textContent='';
+  show('s-settings'); paintTeacher(); $('dirty-note').textContent='';
 }
 function setSeg(id, v){ var o=$(id).querySelectorAll('.opt'); for(var i=0;i<o.length;i++){ o[i].classList.toggle('on', o[i].dataset.v===v); o[i].setAttribute('aria-pressed', o[i].dataset.v===v?'true':'false'); } }
 var SEG={ 'set-diff':'diff', 'set-carry':'carry', 'set-hint':'hint', 'set-font':'font', 'set-sound':'sound', 'set-motion':'motion' };
@@ -1344,7 +1211,7 @@ function paintTeacher(){
     box.appendChild(el('br'));
   });
 }
-function markDirty(){ $('dirty-note').textContent = JSON.stringify(draft)!==JSON.stringify(ST.settings) ? 'まだ 保存していません' : ''; }
+function markDirty(){ $('dirty-note').textContent = JSON.stringify(draft)!==JSON.stringify(ST.settings) ? 'まだ けっていして いないよ' : ''; }
 Object.keys(SEG).forEach(function(id){
   $(id).addEventListener('click', function(e){
     var o=e.target.closest('.opt'); if(!o) return;
@@ -1364,64 +1231,26 @@ $('btn-save').addEventListener('click', function(){
     ST.settings=JSON.parse(JSON.stringify(draft));
     if(affects){ ST.prog={}; ST.last=null; }
     save(); applyLook(); renderTools(); paintTeacher(); markDirty();
-    toast('保存しました','good'); maybeShareCard();
+    toast('せっていを かえました','good');
     saving=false;
   };
   if(affects && Object.keys(ST.prog).length){
-    ask('とちゅうの コースが あります','問題の数・むずかしさ・くり上がりを 変えると、とちゅうのコースは はじめからに なります。保存しますか？','保存する').then(function(y){ if(y) doSave(); else saving=false; });
+    ask('とちゅうの コースが あるよ','もんだいの かず・むずかしさ・くり上がりを かえると、とちゅうの コースは はじめからに なるよ。かえる？','かえる').then(function(y){ if(y) doSave(); else saving=false; });
   }else doSave();
 });
 $('btn-wipe').addEventListener('click', function(){
-  ask('記録を ぜんぶ消しますか？','この端末の クリアの印・とちゅうの続きを すべて消します。もとに もどせません。（せっていと合言葉は のこります）','ぜんぶ消す',true).then(function(y){
+  ask('きろくを ぜんぶ けす？','この たんまつの クリアの しるしと とちゅうの つづきを ぜんぶ けすよ。もとに もどせないよ。','ぜんぶ けす',true).then(function(y){
     if(!y) return;
-    ST.courses={}; ST.prog={}; ST.last=null; save(); paintTeacher(); toast('記録を 消しました','good');
+    ST.courses={}; ST.prog={}; ST.last=null; save(); paintTeacher(); toast('きろくを けしました','good');
   });
 });
-$('btn-chgpin').addEventListener('click', function(){ openPin('chg0'); });
-$('btn-logout').addEventListener('click', function(){
-  var go=function(){ hideShareCard(); closeShare(); draft=null; renderHome(); show('s-home'); };
+$('btn-close-settings').addEventListener('click', function(){
+  var go=function(){ draft=null; renderHome(); show('s-home'); };
   if(draft && JSON.stringify(draft)!==JSON.stringify(ST.settings)){
-    ask('保存していない 変更が あります','保存せずに おわりますか？','保存せずに おわる').then(function(y){ if(y) go(); });
+    ask('まだ けっていして いないよ','かえた ところを すてて おわる？','すてて おわる').then(function(y){ if(y) go(); });
   }else go();
 });
 
-/* =========================================================
-   Xに感想を投稿（先生の設定画面だけ）
-========================================================= */
-var SHARE_TEMPLATES=[
-  '長さの冒険を使ってみました！おすすめです👍 @rohimotoiwaka #GASアプリで学校をHappyに',
-  '長さの冒険、URLを開くだけで子どもたちが mm・cm・m・km の練習に夢中です📏 @rohimotoiwaka #GASアプリで学校をHappyに',
-  'まきじゃくの目もり読みが「長さの冒険」で楽しくなりました🗺️ @rohimotoiwaka #GASアプリで学校をHappyに'
-];
-var X_INTENT='https:'+'/'+'/twitter.com/intent/tweet?text=';
-var shareOpening=false, shareTimer=null;
-function openShare(){
-  var box=$('share-options'); box.innerHTML='';
-  SHARE_TEMPLATES.forEach(function(t){
-    var b=el('button','share-option',t); b.type='button';
-    b.addEventListener('click', function(){
-      if(shareOpening) return; shareOpening=true; setTimeout(function(){ shareOpening=false; },1200);
-      window.open(X_INTENT+encodeURIComponent(t),'_blank','noopener');
-      closeShare(); hideShareCard();
-    });
-    box.appendChild(b);
-  });
-  $('m-share').classList.add('show');
-}
-function closeShare(){ $('m-share').classList.remove('show'); }
-function maybeShareCard(){
-  if(ST.shareHide) return;
-  $('share-card').classList.add('show');
-  if(shareTimer) clearTimeout(shareTimer);
-  shareTimer=setTimeout(hideShareCard, 15000);
-}
-function hideShareCard(){ $('share-card').classList.remove('show'); if(shareTimer){ clearTimeout(shareTimer); shareTimer=null; } }
-$('btn-share').addEventListener('click', openShare);
-$('sh-close').addEventListener('click', closeShare);
-$('m-share').addEventListener('click', function(e){ if(e.target===this) closeShare(); });
-$('sc-open').addEventListener('click', function(){ hideShareCard(); openShare(); });
-$('sc-close').addEventListener('click', hideShareCard);
-$('sc-never').addEventListener('click', function(){ ST.shareHide=true; save(); hideShareCard(); });
 
 /* =========================================================
    画面のボタン
@@ -1464,7 +1293,6 @@ function startSplash(){
 /* =========================================================
    はじめる
 ========================================================= */
-buildPinpad();
 applyLook();
 renderHome();
 renderTools();

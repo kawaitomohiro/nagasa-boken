@@ -55,40 +55,21 @@ async function run(vw, vh, tag) {
   const hscroll = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
   ok(!hscroll, 'トップに よこスクロールが出ない');
 
-  // 先生：合言葉を決める→入る
-  await page.click('#btn-teacher');
-  ok(await page.isVisible('#m-pin'), '先生ボタンで 合言葉パッドが出る');
-  ok((await page.textContent('#pin-desc')).includes('決めて'), '初回は 合言葉を決める案内');
-  await page.screenshot({ path: `${OUT}/${tag}_02_pin_new.png` });
-  await pinType(page, PIN);
-  await pinType(page, ['1', '3', '5', '7']); // そろわない
-  ok((await page.textContent('#pin-desc')).includes('そろいません'), '2回目がそろわないと やり直し');
-  await pinType(page, PIN); await pinType(page, PIN);
-  ok(await page.isVisible('#s-teacher'), '合言葉を決めると 設定画面に入る');
-  const s0 = await st(page);
-  ok(s0.pin && !JSON.stringify(s0).includes('2468'), '合言葉そのものは保存しない');
-  await page.screenshot({ path: `${OUT}/${tag}_03_teacher.png`, fullPage: true });
-  // 問題数5・ふつう・ヒント出す
+  // せってい：だれでも開ける（合言葉なし）
+  ok(!(await page.$('#btn-teacher')) && !(await page.$('#m-pin')), '先生ボタン・合言葉パッドが無い');
+  await page.click('#btn-settings');
+  ok(await page.isVisible('#s-settings'), '歯車で せってい が開く');
+  await page.screenshot({ path: `${OUT}/${tag}_03_settings.png`, fullPage: true });
+  ok(!(await page.$('#btn-share')) && !(await page.$('#m-share')), 'Xに感想のリンク・画面が無い');
   await page.click('[data-cnt="5"]');
   await page.click('#set-diff .opt[data-v="normal"]');
   await page.click('#btn-save');
   ok((await st(page)).settings.count === 5, '問題数5が 保存される');
-  await page.waitForSelector('#share-card.show');
-  ok(true, '保存のあと Xのおすすめカードが出る');
-  await page.click('#sc-close');
-  await page.click('#btn-logout');
-  ok(await page.isVisible('#s-home'), 'おわると 子どものトップへ');
-
-  // 合言葉をまちがえる → 正しく入る
-  await page.click('#btn-teacher');
-  await pinType(page, ['9', '9', '9', '9']);
-  await page.waitForTimeout(100);
-  ok(await page.isVisible('#m-pin') && (await page.getAttribute('#pin-dots', 'class')).includes('shake'), 'まちがえると 点がふるえて そのまま入れ直し');
-  await page.screenshot({ path: `${OUT}/${tag}_04_pin_wrong.png` });
-  if (!mobile) { for (const d of PIN) await page.keyboard.press(d); await page.keyboard.press('Enter'); }
-  else await pinType(page, PIN);
-  ok(await page.isVisible('#s-teacher'), '正しい合言葉で入れる（' + (mobile ? 'パッド' : 'キーボード') + '）');
-  await page.click('#btn-logout');
+  ok(!(await page.$('#share-card')), '保存のあとに Xのカードは出ない');
+  const txt = await page.evaluate(() => document.body.textContent);
+  ok(!/合言葉|先生|パスワード|twitter|intent|GASアプリ|rohimoto|Xに|Xで/.test(txt), '画面に 合言葉・先生・パスワード・X関係の言葉が無い');
+  await page.click('#btn-close-settings');
+  ok(await page.isVisible('#s-home'), 'おわると トップへ');
 
   // 5コースを最後まで
   const genres = ['unit', 'ruler', 'convert', 'calc', 'mix'];
@@ -153,11 +134,11 @@ async function run(vw, vh, tag) {
   await page.screenshot({ path: `${OUT}/${tag}_06_home_after.png`, fullPage: true });
 
   // 設定でむずかしい → 反映（まきじゃくが 入力式になる）
-  await page.click('#btn-teacher'); await pinType(page, PIN);
+  await page.click('#btn-settings');
   await page.click('#set-diff .opt[data-v="hard"]');
   await page.click('#cnt-minus'); // 5→4
   await page.click('#btn-save');
-  await page.click('#sc-close').catch(() => {});
+
   const s2 = await st(page);
   ok(s2.settings.diff === 'hard' && s2.settings.count === 4, 'むずかしい・4もんが 保存される');
   // 記録を消す（確認ダイアログ）
@@ -166,7 +147,7 @@ async function run(vw, vh, tag) {
   await page.screenshot({ path: `${OUT}/${tag}_07_wipe_confirm.png` });
   await page.click('#cf-yes');
   ok(Object.keys((await st(page)).courses).length === 0, '記録が消える');
-  await page.click('#btn-logout');
+  await page.click('#btn-close-settings');
   await page.click('.course[data-genre="ruler"]');
   const s3 = await st(page);
   ok(s3.prog.ruler.qs.length === 4 && s3.prog.ruler.qs.slice(2).every(q => q.parts), '設定が反映：4もん・むずかしいは まきじゃくを書いて答える');
@@ -197,6 +178,12 @@ async function run(vw, vh, tag) {
   ok(await p2.isVisible('#s-quest') && e2.length === 0, '保存できない端末でも 遊べる');
   await ctx2.close();
 
+  const ctx3 = await browser.newContext({ viewport: { width: vw, height: vh } });
+  await ctx3.addInitScript(() => { try { if (!sessionStorage.getItem('x')) { sessionStorage.setItem('x', '1'); localStorage.setItem('nagasaBouken.v1', JSON.stringify({ pin: 'abc', salt: 'zz', shareHide: true, settings: { count: 7 } })); } } catch (e) {} });
+  const p3 = await ctx3.newPage(); await p3.goto(URL); await p3.waitForTimeout(300);
+  const left = await p3.evaluate(() => localStorage.getItem('nagasaBouken.v1'));
+  ok(!/"pin"|"salt"|shareHide/.test(left) && /"count":7/.test(left), '前の版の照合値を 起動時に消す（設定は のこる）');
+  await ctx3.close();
   ok(errors.length === 0, 'コンソールエラー 0 ' + JSON.stringify(errors));
   await browser.close();
 }
