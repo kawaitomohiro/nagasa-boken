@@ -55,7 +55,7 @@ async function run(vw, vh, tag) {
   const hscroll = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
   ok(!hscroll, 'トップに よこスクロールが出ない');
 
-  // せってい：だれでも開ける（合言葉なし）
+  // せってい：だれでも開ける
   ok(!(await page.$('#btn-teacher')) && !(await page.$('#m-pin')), '先'+'生ボタン・合言'+'葉パッドが無い');
   await page.click('#btn-settings');
   ok(await page.isVisible('#s-settings'), '歯車で せってい が開く');
