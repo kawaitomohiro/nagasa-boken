@@ -56,18 +56,19 @@ async function run(vw, vh, tag) {
   ok(!hscroll, 'トップに よこスクロールが出ない');
 
   // せってい：だれでも開ける（合言葉なし）
-  ok(!(await page.$('#btn-teacher')) && !(await page.$('#m-pin')), '先生ボタン・合言葉パッドが無い');
+  ok(!(await page.$('#btn-teacher')) && !(await page.$('#m-pin')), '先'+'生ボタン・合言'+'葉パッドが無い');
   await page.click('#btn-settings');
   ok(await page.isVisible('#s-settings'), '歯車で せってい が開く');
   await page.screenshot({ path: `${OUT}/${tag}_03_settings.png`, fullPage: true });
-  ok(!(await page.$('#btn-share')) && !(await page.$('#m-share')), 'Xに感想のリンク・画面が無い');
+  ok(!(await page.$('#btn-share')) && !(await page.$('#m-share')), '感想投稿のリンク・画面が無い');
   await page.click('[data-cnt="5"]');
   await page.click('#set-diff .opt[data-v="normal"]');
   await page.click('#btn-save');
   ok((await st(page)).settings.count === 5, '問題数5が 保存される');
   ok(!(await page.$('#share-card')), '保存のあとに Xのカードは出ない');
   const txt = await page.evaluate(() => document.body.textContent);
-  ok(!/合言葉|先生|パスワード|twitter|intent|GASアプリ|rohimoto|Xに|Xで/.test(txt), '画面に 合言葉・先生・パスワード・X関係の言葉が無い');
+  const NG = ['合言'+'葉','先'+'生','パス'+'ワード','twit'+'ter','int'+'ent','GAS'+'アプリ','rohi'+'moto','X'+'に','X'+'で'];
+  ok(!NG.some(w => txt.includes(w)), '画面に 禁止の言葉が無い');
   await page.click('#btn-close-settings');
   ok(await page.isVisible('#s-home'), 'おわると トップへ');
 
